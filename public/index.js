@@ -1,18 +1,17 @@
 window.addEventListener('load', function() {
   
-  var hogwartsData = new HogwartsData('http://hp-api.herokuapp.com/api/characters');
-  hogwartsData.getData();
+  var url = 'http://hp-api.herokuapp.com/api/characters';
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url);
+
+  xhr.addEventListener('load', function() {
+    var wizardsData = JSON.parse(xhr.xhrText);
+    renderList(wizardsData);
+  })
 
   
 
 
 
-
-
-
-
-
-
-
-}
+})
 

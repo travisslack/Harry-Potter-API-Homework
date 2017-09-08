@@ -1,7 +1,6 @@
 {
   "name": "start_point",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,6 +9,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.3"
-  }
+    "express": "^4.15.4"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travisslack/Harry-Potter-API-Homework.git"
+  },
+  "bugs": {
+    "url": "https://github.com/travisslack/Harry-Potter-API-Homework/issues"
+  },
+  "homepage": "https://github.com/travisslack/Harry-Potter-API-Homework#readme",
+  "description": ""
 }
