@@ -16,6 +16,7 @@ var makeRequest = function (url, callback) {
   xhr.send();
 }
 
+
 var render = function (wizards) {
   var storedWizard = localStorage.getItem('selectedWizard');
   var wizardToDisplay = null;
@@ -32,6 +33,7 @@ var render = function (wizards) {
   populateSelect(wizards);
   updateInfo(wizardToDisplay);
 }
+
 var populateSelect = function (wizards) {
   var select = document.getElementById('wizards');
 
@@ -72,8 +74,38 @@ var updateInfo = function (wizard) {
   pTags[3].innerText = wizard.dateOfBirth;
   pTags[4].innerText = wizard.ancestry;
   pTags[5].innerText = wizard.patronus;
-  pTags[6].innerText = wizard.HogwartsStudent;
-  pTags[7].innerText = wizard.HogwartsStaff;
+  pTags[6].innerText = wizard.hogwartsStudent;
+  pTags[7].innerText = wizard.hogwartsStaff;
   pTags[8].innerText = wizard.alive;
+
+
+
+  request.addEventListener('load', function() {
+    loadWizardCharts(request.responseText);
+  });
+
+
+  var loadWizardCharts = function(responseText) {
+    var wizards = JSON.parse(responseText);
+
+
+    var wizardancestryLabels = wizards.reduce(function(labels, wizard){
+      return labels.includes(wizard.ancestry) ? labels : labels.concat(wizard.ancestry)
+    },[])
+
+    var wizardAncestryData = {
+    name: "Number of Countries",
+    data: []
+  };
+
+  wizardAncestryData.data = wizardancestryLabels.map(function(ancestryLabel){
+    return wizards.filter(function(wizard) {
+      return wizard.ancestry === ancestryLabel 
+    }).length
+  })
+  
+  new ColumnChart("Wizards with different Ancestry", wizardAncestryData, wizardancestryLabels);
+};
+
 }
 
