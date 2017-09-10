@@ -41,6 +41,8 @@ var populateSelect = function (wizards) {
     option.value = index;
     option.text = item.name;
     select.appendChild(option);
+    // var img = createImage(wizardObject);
+    // option.appendChild(img);
   });
 
   select.addEventListener('change', function (event) {
@@ -52,5 +54,26 @@ var populateSelect = function (wizards) {
     var jsonString = JSON.stringify(wizard);
     localStorage.setItem('selectedWizard', jsonString);
   });
+}
+
+// var createImage = function (wizard) {
+//   var image = document.createElement('img');
+//   image.src = wizard.image;
+//   image.alt = wizard.name;
+//   return image;
+// };
+
+
+var updateInfo = function (wizard) {
+  var pTags = document.querySelectorAll('#info p');
+  pTags[0].innerText = wizard.species;
+  pTags[1].innerText = wizard.gender;
+  pTags[2].innerText = wizard.house;
+  pTags[3].innerText = wizard.dateOfBirth;
+  pTags[4].innerText = wizard.ancestry;
+  pTags[5].innerText = wizard.patronus;
+  pTags[6].innerText = wizard.HogwartsStudent;
+  pTags[7].innerText = wizard.HogwartsStaff;
+  pTags[8].innerText = wizard.alive;
 }
 
