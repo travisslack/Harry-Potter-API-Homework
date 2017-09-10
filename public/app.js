@@ -32,4 +32,25 @@ var render = function (wizards) {
   populateSelect(wizards);
   updateInfo(wizardToDisplay);
 }
+var populateSelect = function (wizards) {
+  var select = document.getElementById('wizards');
+
+  wizards.forEach(function (item, index) {
+    item.index = index;
+    var option = document.createElement('option');
+    option.value = index;
+    option.text = item.name;
+    select.appendChild(option);
+  });
+
+  select.addEventListener('change', function (event) {
+    var index = this.value;
+    var wizard = wizards[index];
+
+    updateInfo(wizard);
+
+    var jsonString = JSON.stringify(wizard);
+    localStorage.setItem('selectedWizard', jsonString);
+  });
+}
 
